@@ -11,4 +11,4 @@ require_once __DIR__.'/../{{ path }}/{{ class }}Kernel.php';
 use Symfony\Component\HttpFoundation\Request;
 
 $kernel = new {{ class }}Kernel('dev', true);
-$kernel->handle(new Request())->send();
+$kernel->handle(Request::createFromGlobals())->send();
