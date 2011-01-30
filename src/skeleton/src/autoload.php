@@ -1,23 +1,25 @@
 <?php
+define('SYMFONY_PATH', '{{ symfony-path }}');
+define('SYMFONY_VENDOR_PATH', '{{ symfony-vendor-path }}');
 
-require_once __DIR__.'/vendor/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
+require_once SYMFONY_PATH.'/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
-    'Symfony'                    => __DIR__.'/vendor/symfony/src',
+    'Symfony'                    => SYMFONY_PATH,
     'Application'                => __DIR__,
     'Bundle'                     => __DIR__,
-    'Doctrine\\Common'           => __DIR__.'/vendor/doctrine-common/lib',
-    'Doctrine\\DBAL\\Migrations' => __DIR__.'/vendor/doctrine-migrations/lib',
-    'Doctrine\\ODM\\MongoDB'     => __DIR__.'/vendor/doctrine-mongodb/lib',
-    'Doctrine\\DBAL'             => __DIR__.'/vendor/doctrine-dbal/lib',
-    'Doctrine'                   => __DIR__.'/vendor/doctrine/lib',
-    'Zend'                       => __DIR__.'/vendor/zend/library',
+    'Doctrine\\Common'           => SYMFONY_VENDOR_PATH.'/doctrine-common/lib',
+    'Doctrine\\DBAL\\Migrations' => SYMFONY_VENDOR_PATH.'/doctrine-migrations/lib',
+    'Doctrine\\ODM\\MongoDB'     => SYMFONY_VENDOR_PATH.'/doctrine-mongodb/lib',
+    'Doctrine\\DBAL'             => SYMFONY_VENDOR_PATH.'/doctrine-dbal/lib',
+    'Doctrine'                   => SYMFONY_VENDOR_PATH.'/doctrine/lib',
+    'Zend'                       => SYMFONY_VENDOR_PATH.'/zend/library',
 ));
 $loader->registerPrefixes(array(
-    'Swift_' => __DIR__.'/vendor/swiftmailer/lib/classes',
-    'Twig_'  => __DIR__.'/vendor/twig/lib',
+    'Swift_' => SYMFONY_VENDOR_PATH.'/swiftmailer/lib/classes',
+    'Twig_'  => SYMFONY_VENDOR_PATH.'/twig/lib',
 ));
 $loader->register();

@@ -80,7 +80,7 @@ EOF;
         $files = array(
             'LICENSE',
             'src/autoload.php',
-            'src/vendor/symfony/src/Symfony/Component/HttpFoundation/UniversalClassLoader.php',
+            'src/vendor/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php',
             'src/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Util/Filesystem.php',
             'src/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Util/Mustache.php',
         );

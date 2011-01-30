@@ -37,6 +37,8 @@ class InitCommand extends Command
                 new InputOption('app-path', '', InputOption::VALUE_REQUIRED, 'The path to the application (app/)', 'app/'),
                 new InputOption('src-path', '', InputOption::VALUE_REQUIRED, 'The path to the application (src/)', 'src/'),
                 new InputOption('web-path', '', InputOption::VALUE_REQUIRED, 'The path to the public web root (web/)', 'web/'),
+                new InputOption('symfony-path', '', InputOption::VALUE_REQUIRED, "The path to the symfony source code ('.__DIR__.'/vendor/symfony/src)", "'.__DIR__.'/vendor/symfony/src"),
+                new InputOption('symfony-vendor-path', '', InputOption::VALUE_REQUIRED, "The path to the symfony vendor source code ('.__DIR__.'/vendor)", "'.__DIR__.'/vendor"),
                 new InputOption('format', '', InputOption::VALUE_REQUIRED, 'Use the format for configuration files (php, xml, or yml)', 'xml'),
             ))
             ->setName('init')
@@ -64,15 +66,18 @@ class InitCommand extends Command
         $webPath = getcwd().'/'.$input->getOption('web-path');
 
         $parameters = array(
-            'class'       => $input->getOption('name'),
-            'application' => $application,
-            'format'      => $input->getOption('format'),
-            'path'        => rtrim($input->getOption('app-path', $application), '//'),
+            'class'               => $input->getOption('name'),
+            'application'         => $application,
+            'format'              => $input->getOption('format'),
+            'path'                => rtrim($input->getOption('app-path', $application), '//'),
+            'symfony-path'        => $input->getOption('symfony-path'),
+            'symfony-vendor-path' => $input->getOption('symfony-vendor-path'),
         );
 
         $filesystem->mirror($skeletonDir.'/application/generic', $appPath);
         $filesystem->mirror($skeletonDir.'/application/'.$input->getOption('format'), $appPath);
         $filesystem->mirror($skeletonDir.'/src', $srcPath);
+        Mustache::renderFile($srcPath.'/autoload.php', $parameters);
 
         Mustache::renderDir($appPath, $parameters);
 
