@@ -3,7 +3,7 @@
 require_once __DIR__.'/../src/autoload.php';
 
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\DependencyInjection\Loader\LoaderInterface;
+use Symfony\Component\Config\Loader\LoaderInterface;
 
 class {{ class }}Kernel extends Kernel
 {
@@ -24,7 +24,7 @@ class {{ class }}Kernel extends Kernel
             // register your bundles
         );
 
-        if ($this->isDebug()) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 
