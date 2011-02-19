@@ -24,7 +24,7 @@ class {{ class }}Kernel extends Kernel
             // register your bundles
         );
 
-        if ($this->isDebug()) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 

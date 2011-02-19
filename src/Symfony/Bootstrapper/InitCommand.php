@@ -39,7 +39,7 @@ class InitCommand extends Command
                 new InputOption('web-path', '', InputOption::VALUE_REQUIRED, 'The path to the public web root (web/)', 'web/'),
                 new InputOption('symfony-path', '', InputOption::VALUE_REQUIRED, "The path to the symfony source code ('.__DIR__.'/vendor/symfony/src)", "'.__DIR__.'/vendor/symfony/src"),
                 new InputOption('symfony-vendor-path', '', InputOption::VALUE_REQUIRED, "The path to the symfony vendor source code ('.__DIR__.'/vendor)", "'.__DIR__.'/vendor"),
-                new InputOption('format', '', InputOption::VALUE_REQUIRED, 'Use the format for configuration files (php, xml, or yml)', 'xml'),
+                new InputOption('format', '', InputOption::VALUE_REQUIRED, 'Use the format for configuration files (php, xml, or yml)', 'yml'),
             ))
             ->setName('init')
         ;
